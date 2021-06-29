@@ -72,7 +72,8 @@ SELECT *
 FROM covid_death cd
 JOIN covid_vaccination cv
 ON cd.location = cv.location
-and cd.date = cv.date;
+and cd.date = cv.date
+and cd.location=cv.location;
 
 --Looking at total population vs vaccination
 WITH PopvsVac 
@@ -83,6 +84,7 @@ FROM covid_death cd
 JOIN covid_vaccination cv
 ON cd.location = cv.location
 and cd.date = cv.date
+and cd.location=cv.location
 WHERE cd.continent is not null 
 )
 SELECT *, (RollingPeopleVaccinated/population)*100 AS PopulationVaccinatedPercentage
